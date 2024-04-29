@@ -3,6 +3,8 @@ import './App.css';
 import { useEffect } from "react";
 import { useRef } from "react";
 
+const data = [12,5,20,35]
+
 function App() {
   //const ref = useRef()
 
@@ -18,12 +20,14 @@ function App() {
 
   return (
     <svg>
-      <rect
-        x="150"
-        y="77"
-        width="40"
-        height="100"
-      />
+      {data.map((d, i)=>(
+        <rect 
+          x={i*50}
+          y={100-d}
+          width="40"
+          height={d}
+        />
+      ))}
     </svg>
   );
 }
