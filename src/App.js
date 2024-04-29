@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 function App() {
-  const ref = useRef()
+  //const ref = useRef()
 
   /* useEffect(()=>{
     const svgElement = d3.select(ref.current)
