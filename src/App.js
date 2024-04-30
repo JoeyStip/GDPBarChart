@@ -19,16 +19,19 @@ function App() {
   }, []) */
 
   return (
-    <svg>
-      {data.map((d, i)=>(
-        <rect 
-          x={i*50}
-          y={100-d}
-          width="40"
-          height={d}
-        />
-      ))}
-    </svg>
+    <div id="background">
+      <svg>
+        {data.map((d, i)=>(
+          <rect 
+            x={i*50}
+            y={100-d}
+            width="40"
+            height={d}
+            
+          />
+        ))}
+      </svg>
+    </div>
   );
 }
 
