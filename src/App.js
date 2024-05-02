@@ -4,10 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRef } from "react";
 import ResizeObserver from '@juggle/resize-observer'
 
-const Axis = ({
-  domain=[0, 100],
-  range=[10, 290],
-}) => {
+const Axis = ({ domain=[0, 100], range=[10, 290],}) => {
   const ticks = useMemo(() => {
     const xScale = d3.scaleLinear()
       .domain(domain)
@@ -25,10 +22,8 @@ const Axis = ({
         value,
         xOffset: xScale(value)
       }))
-  }, [
-    domain.join("-"),
-    range.join("-")
-  ])
+  }, [domain.join("-"), range.join("-")])
+  
   return (
     <svg>
       <path
