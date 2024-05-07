@@ -8,9 +8,9 @@
             const h = 500;
             const padding = 80;
             const dataSet = [
-                [2000, 9],
+                [2000, 8],
                 [2001, 25],
-                [2002, 32],
+                [2002, 30],
                 [2003, 45]
             ];
             const xScale = d3.scaleLinear()
@@ -18,7 +18,7 @@
                 .range([padding, w-padding]);
             const yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataSet, (d)=>d[1])])
-                .range([padding, h-padding]);
+                .range([h-padding, padding]);
             const svg = d3.select("body")
                 .append("svg")
                 .attr("width", w)
@@ -28,9 +28,9 @@
                 .enter()
                 .append("rect")
                 .attr("x", (d)=> xScale(d[0]))
-                .attr("y", (d)=> h - yScale(d[1]))
+                .attr("y", (d)=> yScale(d[1]))
                 .attr("width", 65)
-                .attr("height", (d)=> yScale(d[1])-padding)
+                .attr("height", (d)=> h-yScale(d[1])-padding)
                 .attr("fill", "navy")
 
             const xAxis = d3.axisBottom(xScale)
