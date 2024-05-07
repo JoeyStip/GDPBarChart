@@ -10,15 +10,15 @@
                 .then(data=> {
                     const json = data;
                     //document.getElementsByName("h1").innerHTML = JSON.stringify(data);
-                    const dataSet = json["data"]
-                    console.log(dataSet[0][0])
+                    const dataSet = json["data"];
+                    console.log(Date.parse(dataSet[0][0]));
                     
                     const w = 700;
                     const h = 500;
                     const padding = 80;
                     
-                    const xScale = d3.scaleLinear()
-                        .domain([d3.min(dataSet, (d)=>d[0]), d3.max(dataSet, (d)=>d[0])])
+                    const xScale = d3.scaleUtc()
+                        .domain([d3.min(dataSet, (d)=>new Date(d[0])), d3.max(dataSet, (d)=>new Date(d[0]))])
                         .range([padding, w-padding]);
 
                     const yScale = d3.scaleLinear()
@@ -28,22 +28,23 @@
                     const svg = d3.select("body")
                         .append("svg")
                         .attr("width", w)
-                        .attr("height", h)
+                        .attr("height", h);
+
                     svg.selectAll("rect")
                         .data(dataSet)
                         .enter()
                         .append("rect")
-                        .attr("x", (d)=> xScale(d[0]))
+                        .attr("x", (d)=> xScale(new Date(d[0])))
                         .attr("y", (d)=> yScale(d[1]))
-                        .attr("width", (w-padding)/dataSet.length)
+                        .attr("width", 15)
                         .attr("height", (d)=> h-yScale(d[1])-padding)
                         .attr("fill", "navy")
-                        .attr("class", "bar")
+                        .attr("class", "bar");
 
                     const xAxis = d3.axisBottom(xScale)
-                        .ticks(dataSet.length, "f")
+                    //    .ticks(dataSet.length, "f");
                         
-                    const yAxis = d3.axisLeft(yScale)
+                    const yAxis = d3.axisLeft(yScale);
 
                     svg.append("g")
                         .attr("transform", "translate(0," + (h - padding) + ")")
@@ -54,7 +55,7 @@
                         .attr("transform", "translate(" + padding + ",0)")
                         .call(yAxis)
                         .attr("id", "y-axis");
-            })
+            });
         </script>
         <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
     </body>
