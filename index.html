@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link href="./index.css" rel="stylesheet">
+    </head>
     <body>
-        <h1 id="title">Epic Bar Chart</h1>
+
+        <div class="graphContainer">
+            <h1 id="title">Epic Bar Chart</h1>
+
+        </div>
         <script type="module">
             import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -9,7 +16,6 @@
                 .then(response =>response.json())
                 .then(data=> {
                     const json = data;
-                    //document.getElementsByName("h1").innerHTML = JSON.stringify(data);
                     const dataSet = json["data"];
                     console.log(Date.parse(dataSet[0][0]));
                     
@@ -25,10 +31,11 @@
                         .domain([0, d3.max(dataSet, (d)=>d[1])])
                         .range([h-padding, padding]);
 
-                    const svg = d3.select("body")
+                    const svg = d3.select(".graphContainer")
                         .append("svg")
                         .attr("width", w)
-                        .attr("height", h);
+                        .attr("height", h)
+                        .attr("class", "mainBox");
 
                     svg.selectAll("rect")
                         .data(dataSet)
@@ -36,10 +43,12 @@
                         .append("rect")
                         .attr("x", (d)=> xScale(new Date(d[0])))
                         .attr("y", (d)=> yScale(d[1]))
-                        .attr("width", 15)
+                        .attr("width", dataSet.length/w)
                         .attr("height", (d)=> h-yScale(d[1])-padding)
                         .attr("fill", "navy")
-                        .attr("class", "bar");
+                        .attr("class", "bar")
+                        .attr("date-date", (d)=>d[0])
+                        .attr("date-gdp", (d)=>d[1]);
 
                     const xAxis = d3.axisBottom(xScale)
                     //    .ticks(dataSet.length, "f");
