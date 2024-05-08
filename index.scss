@@ -28,9 +28,16 @@ body {
 }
 
 .bar {
-    
+
 }
 
 .bar:hover {
     fill:red;
+}
+
+#tooltip {
+    width:55px;
+    height: 35px;
+    background-color: blue;
+    opacity:0.5;
 }

@@ -7,7 +7,7 @@
 
         <div class="graphContainer">
             <h1 id="title">Epic Bar Chart</h1>
-
+            <div id="tooltip"></div>
         </div>
         <script type="module">
             import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
@@ -17,7 +17,7 @@
                 .then(data=> {
                     const json = data;
                     const dataSet = json["data"];
-                    console.log(Date.parse(dataSet[0][0]));
+                    //console.log(Date.parse(dataSet[0][0]));
                     
                     const w = 700;
                     const h = 500;
@@ -47,7 +47,13 @@
                         .attr("width", 2)
                         .attr("height", (d)=> h-yScale(d[1])-padding)
                         .attr("data-date", (d)=>d[0])
-                        .attr("data-gdp", (d)=>d[1]);
+                        .attr("data-gdp", (d)=>d[1])
+                        .on("mouseover",(event, d)=>{
+                            //d3.select(event.target).append("g").text("test")
+                            console.log(d3.select("#tooltip").attr("opacity"))
+                            d3.select("#tooltip").attr("opacity", d[1])
+                        })
+                        .on("mouseout", (event, d)=>d3.select(event.target))
 
                     const xAxis = d3.axisBottom(xScale)
                     //    .ticks(dataSet.length, "f");
