@@ -41,14 +41,13 @@
                         .data(dataSet)
                         .enter()
                         .append("rect")
+                        .attr("class", "bar")
                         .attr("x", (d)=> xScale(new Date(d[0])))
                         .attr("y", (d)=> yScale(d[1]))
-                        .attr("width", dataSet.length/w)
+                        .attr("width", 2)
                         .attr("height", (d)=> h-yScale(d[1])-padding)
-                        .attr("fill", "navy")
-                        .attr("class", "bar")
-                        .attr("date-date", (d)=>d[0])
-                        .attr("date-gdp", (d)=>d[1]);
+                        .attr("data-date", (d)=>d[0])
+                        .attr("data-gdp", (d)=>d[1]);
 
                     const xAxis = d3.axisBottom(xScale)
                     //    .ticks(dataSet.length, "f");
