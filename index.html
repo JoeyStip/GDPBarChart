@@ -51,7 +51,7 @@
                         .on("mouseover",(event, d)=>{
                             //d3.select(event.target).append("g").text("test")
                             console.log(d3.select("#tooltip").attr("opacity"))
-                            d3.select("#tooltip").attr("opacity", d[1])
+                            d3.select("#tooltip").style("opacity", 1)
                         })
                         .on("mouseout", (event, d)=>d3.select(event.target))
 
