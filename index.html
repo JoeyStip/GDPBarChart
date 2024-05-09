@@ -50,10 +50,14 @@
                         .attr("data-gdp", (d)=>d[1])
                         .on("mouseover",(event, d)=>{
                             //d3.select(event.target).append("g").text("test")
-                            console.log(d3.select("#tooltip").attr("opacity"))
-                            d3.select("#tooltip").style("opacity", 1)
+                            //console.log(d3.select("#tooltip").attr("opacity"))
+                            const tooltip = d3.select("#tooltip");
+                            tooltip.style("opacity", 0.7)
+                            const [x, y] = d3.pointer(event)
+                            tooltip.style('transform', `translate(${x}px, ${y}px)`)
+                            
                         })
-                        .on("mouseout", (event, d)=>d3.select(event.target))
+                        .on("mouseout", (event, d)=>d3.select("#tooltip").style("opacity", 0))
 
                     const xAxis = d3.axisBottom(xScale)
                     //    .ticks(dataSet.length, "f");
