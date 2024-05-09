@@ -36,9 +36,15 @@ body {
 }
 
 #tooltip {
-    width:55px;
-    height: 35px;
+    display:flex;
+    justify-content: center;
+    width:115px;
+    height: 75px;
     background-color: red;
     opacity: 0;
-   
+    color:black;
+    border-radius: 25px;
+    flex-direction: column;
+    padding:5px;
+    font-weight: 800;
 }

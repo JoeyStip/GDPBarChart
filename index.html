@@ -52,9 +52,11 @@
                             //d3.select(event.target).append("g").text("test")
                             //console.log(d3.select("#tooltip").attr("opacity"))
                             const tooltip = d3.select("#tooltip");
-                            tooltip.style("opacity", 0.7)
                             const [x, y] = d3.pointer(event)
-                            tooltip.style('transform', `translate(${x}px, ${y}px)`)
+                            tooltip.style("opacity", 0.7)
+                                .style('transform', `translate(${x}px, ${y}px)`)
+                                .html("<span>date: " + d[0]+ "</span><span>$" + d[1] + "</span>")
+                                
                             
                         })
                         .on("mouseout", (event, d)=>d3.select("#tooltip").style("opacity", 0))
