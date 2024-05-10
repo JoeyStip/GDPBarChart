@@ -8,9 +8,9 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 680px;
+  width: 690px;
   height: 550px;
-  padding: 30px;
+  padding: 65px;
   border: solid 1px black;
 }
 .graphContainer h1 {
@@ -30,7 +30,7 @@ body {
 #tooltip {
   display: flex;
   justify-content: center;
-  width: 115px;
+  width: 125px;
   height: 75px;
   background-color: red;
   opacity: 0;

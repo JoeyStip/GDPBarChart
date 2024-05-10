@@ -6,7 +6,7 @@
     <body>
 
         <div class="graphContainer">
-            <h1 id="title">Epic Bar Chart</h1>
+            <h1 id="title">US GDP (in billions)</h1>
             <div id="tooltip"></div>
         </div>
         <script type="module">
@@ -17,8 +17,8 @@
                 .then(data=> {
                     const json = data;
                     const dataSet = json["data"];
-                    //console.log(Date.parse(dataSet[0][0]));
-                    
+                    console.log(data);
+                    console.log(data.display_url)
                     const w = 700;
                     const h = 500;
                     const padding = 80;
@@ -50,15 +50,13 @@
                         .attr("data-gdp", (d)=>d[1])
                         .on("mouseover",(event, d)=>{
                             const date = new Intl.DateTimeFormat(navigator.language).format(new Date(d[0]))
-                            const gdp = new Intl.NumberFormat('en-US', {style: 'currency', currency:'USD'}).format(d[1])
+                            const gdp = new Intl.NumberFormat('en-US', {style: 'currency', currency:'USD', maximumFractionDigits:'0'}).format(d[1])
                             const tooltip = d3.select("#tooltip");
                             const [x, y] = d3.pointer(event)
                             tooltip.style("opacity", 0.7)
                                 .style('transform', `translate(${x}px, ${y}px)`)
-                                .html("<span>date: " + date + "</span><span>$" + gdp + "</span>")
+                                .html("<span>date: " + date + "</span><span>GDP: " + gdp + " B</span>")
                                 .attr("data-date", d[0])
-                                
-                            
                         })
                         .on("mouseout", (event, d)=>d3.select("#tooltip").style("opacity", 0))
 
