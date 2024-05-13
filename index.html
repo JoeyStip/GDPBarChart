@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="./index.css" rel="stylesheet">
+        <title>US GDP</title>
+        <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/362/362929.png">
+    </head>
+    <body>
+
+        <div class="graphContainer">
+            <h1 id="title">US GDP (in billions)</h1>
+            <div id="tooltip"></div>
+            <div id="dataSource">Source: <a></a></div>
+        </div>
+        <script type="module">
+            import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+            fetch("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json")
+                .then(response =>response.json())
+                .then(data=> {
+                    const json = data;
+                    const dataSet = json["data"];
+                    console.log(data);
+                    console.log(data.display_url)
+                    
+                    d3.select("a").html(data.display_url)
+                        .attr("href", data.display_url)
+
+                    const w = 700;
+                    const h = 500;
+                    const padding = 80;
+                    
+                    const xScale = d3.scaleUtc()
+                        .domain([d3.min(dataSet, (d)=>new Date(d[0])), d3.max(dataSet, (d)=>new Date(d[0]))])
+                        .range([padding, w-padding]);
+
+                    const yScale = d3.scaleLinear()
+                        .domain([0, d3.max(dataSet, (d)=>d[1])])
+                        .range([h-padding, padding]);
+
+                    const svg = d3.select(".graphContainer")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h)
+                        .attr("class", "mainBox");
+
+                    svg.selectAll("rect")
+                        .data(dataSet)
+                        .enter()
+                        .append("rect")
+                        .attr("class", "bar")
+                        .attr("x", (d)=> xScale(new Date(d[0])))
+                        .attr("y", (d)=> yScale(d[1]))
+                        .attr("width", 2)
+                        .attr("height", (d)=> h-yScale(d[1])-padding)
+                        .attr("data-date", (d)=>d[0])
+                        .attr("data-gdp", (d)=>d[1])
+                        .on("mouseover",(event, d)=>{
+                            const date = new Intl.DateTimeFormat(navigator.language).format(new Date(d[0]))
+                            const gdp = new Intl.NumberFormat('en-US', {style: 'currency', currency:'USD', maximumFractionDigits:'0'}).format(d[1])
+                            const tooltip = d3.select("#tooltip");
+                            const [x, y] = d3.pointer(event)
+                            tooltip.style("opacity", 0.7)
+                                .style('transform', `translate(${x}px, ${y-185}px)`)
+                                .html("<span>date: " + date + "</span><span>GDP: " + gdp + " B</span>")
+                                .attr("data-date", d[0])
+                        })
+                        .on("mouseout", (event, d)=>d3.select("#tooltip").style("opacity", 0))
+                    const xAxis = d3.axisBottom(xScale)
+                        
+                    const yAxis = d3.axisLeft(yScale);
+
+                    svg.append("g")
+                        .attr("transform", "translate(0," + (h - padding) + ")")
+                        .call(xAxis)
+                        .attr("id", "x-axis");
+                    
+                    svg.append("g")
+                        .attr("transform", "translate(" + padding + ",0)")
+                        .call(yAxis)
+                        .attr("id", "y-axis");
+            });
+        </script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
