@@ -59,13 +59,12 @@
                             const tooltip = d3.select("#tooltip");
                             const [x, y] = d3.pointer(event)
                             tooltip.style("opacity", 0.7)
-                                .style('transform', `translate(${x}px, ${y}px)`)
+                                .style('transform', `translate(${x}px, ${y-185}px)`)
                                 .html("<span>date: " + date + "</span><span>GDP: " + gdp + " B</span>")
                                 .attr("data-date", d[0])
                         })
                         .on("mouseout", (event, d)=>d3.select("#tooltip").style("opacity", 0))
                     const xAxis = d3.axisBottom(xScale)
-                    //    .ticks(dataSet.length, "f");
                         
                     const yAxis = d3.axisLeft(yScale);
 
@@ -78,10 +77,6 @@
                         .attr("transform", "translate(" + padding + ",0)")
                         .call(yAxis)
                         .attr("id", "y-axis");
-
-                    svg.append("text")
-                        .text("testHELLOHELLO")
-                        .style("fill", "red")
             });
         </script>
         <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>

@@ -9,7 +9,7 @@
   justify-content: center;
   flex-direction: column;
   width: 690px;
-  height: 550px;
+  height: 600px;
   padding: 65px;
   border: solid 1px black;
 }
@@ -28,6 +28,7 @@ body {
 }
 
 #tooltip {
+  position: absolute;
   display: flex;
   justify-content: center;
   width: 125px;
@@ -42,7 +43,7 @@ body {
 }
 
 #dataSource {
-  position: absolute;
-  top: 150px;
-  left: 280px;
+  position: relative;
+  top: 480px;
+  left: 79px;
 }/*# sourceMappingURL=index.css.map */
