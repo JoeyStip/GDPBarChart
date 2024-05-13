@@ -1,5 +1,6 @@
 * {
   overflow: hidden;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .graphContainer {
@@ -31,15 +32,17 @@ body {
   position: absolute;
   display: flex;
   justify-content: center;
-  width: 125px;
-  height: 75px;
+  width: 160px;
+  height: 55px;
   background-color: red;
   opacity: 0;
   color: black;
   border-radius: 25px;
   flex-direction: column;
   padding: 5px;
-  font-weight: 800;
+  font-weight: 600;
+  font-size: medium;
+  border: 1px solid black;
 }
 
 #dataSource {
