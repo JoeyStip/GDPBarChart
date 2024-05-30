@@ -10,7 +10,7 @@ The QuoteMachine is a single-page web app created as part of the curriculum for 
 
 ## Usage
 
-Check out out the GDPBarChart by following this [link]().
+Check out out the GDPBarChart by following this [link](https://joeystip.github.io/GDPBarChart/).
 
 ## credits
 
