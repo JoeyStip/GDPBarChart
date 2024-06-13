@@ -1,6 +1,6 @@
 # GDPBarChart
 
-The QuoteMachine is a single-page web app created as part of the curriculum for the Front-End Development Libraries Certification from Free Code Camp. 
+The GDPBarChart is a single-page web app created as part of the curriculum for the Data Visualization Certification from Free Code Camp. 
 
 ## Features
 
@@ -14,7 +14,8 @@ Check out out the GDPBarChart by following this [link](https://joeystip.github.i
 
 ## credits
 
-- Automatic testing suite written by Free Code Camp and required for course completion. 
+- Automatic testing suite written by Free Code Camp and required for course completion.
+- d3.js JavaScript Library used for all svg graphics.
 
 ## License
 
